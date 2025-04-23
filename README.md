@@ -6,7 +6,7 @@ Daniel Metzger
 Cloud Solution Architect Identity & Security
 Microsoft Switzerland GmbH
  
-##About this Conditional Access Framework
+## About this Conditional Access Framework
 
 Careful planning of your Conditional Access deployment is important to implementing your organization's access strategy for applications and resources. In today's mobile-first, cloud-first environment, users access your organization's resources from various locations, devices, and applications. Consequently, focusing solely on who can access a resource is insufficient. Considerations must also include the user’s location, the device being used, the specific resource in question, and other relevant factors.
 Microsoft Entra Conditional Access (CA) utilizes signals such as user identity, device, and location to make automated decisions and enforce access policies tailored to your organization. These CA policies can apply access controls like multifactor authentication (MFA). By utilizing CA policies, organizations can prompt users for MFA when necessary, thereby enhancing security while ensuring a seamless user experience.
@@ -16,13 +16,13 @@ The primary purpose of this document is to provide guidelines on how to configur
 The framework leverages the capabilities of Microsoft Entra Conditional Access, enabling organizations to enforce their access policies based on various signals such as user identity, device type, and location. By using these signals, organizations can automate their access decisions, ensuring that security measures like multifactor authentication (MFA) are applied when necessary.
 To facilitate the rapid deployment of this Conditional Access framework, a PowerShell script is available. This script streamlines the process, allowing for swift implementation without the need for in-depth manual configuration. It ensures that your access policies are applied efficiently and effectively, enhancing the security of your organization's resources.
  
-##The Conditional Access funnel model
+## The Conditional Access funnel model
  
 
  
 
  
-##Baseline policies
+## Baseline policies
 Exclude break-glass and directory sync accounts from all Conditional Access policies to prevent accidental lockouts. Break-glass accounts ensure admin access in emergencies, while directory sync accounts must remain unaffected for seamless identity synchronization.
 Always set policies to Report-only mode first to monitor their impact before enforcing them. Analyze sign-in logs and Conditional Access insights to prevent disruptions.
  
