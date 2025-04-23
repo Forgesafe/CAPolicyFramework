@@ -13,7 +13,9 @@ Microsoft Entra Conditional Access (CA) utilizes signals such as user identity, 
  
 This document introduces a base Conditional Access framework, which builds on templates available in Entra ID but adds additional policies to secure administrative work with highly privileged Entra ID roles and to safeguard access to sensitive data. The framework is thought to be a starting point for an implementation which covers all users. Customers most certainly will add more policies to meet specific needs, and not all policies in this framework will be enabled in all environments from the start.
 The primary purpose of this document is to provide guidelines on how to configure baseline policies to enhance security while maintaining operational efficiency. For instance, it recommends excluding break-glass accounts from all Conditional Access policies to prevent accidental lockouts. Additionally, it emphasizes the importance of setting policies to Report-only mode initially, allowing organizations to monitor the impact of these policies before enforcing them.
+
 The framework leverages the capabilities of Microsoft Entra Conditional Access, enabling organizations to enforce their access policies based on various signals such as user identity, device type, and location. By using these signals, organizations can automate their access decisions, ensuring that security measures like multifactor authentication (MFA) are applied when necessary.
+
 To facilitate the rapid deployment of this Conditional Access framework, a PowerShell script is available. This script streamlines the process, allowing for swift implementation without the need for in-depth manual configuration. It ensures that your access policies are applied efficiently and effectively, enhancing the security of your organization's resources.
  
 ## The Conditional Access funnel model
@@ -26,8 +28,8 @@ To facilitate the rapid deployment of this Conditional Access framework, a Power
 Exclude break-glass and directory sync accounts from all Conditional Access policies to prevent accidental lockouts. Break-glass accounts ensure admin access in emergencies, while directory sync accounts must remain unaffected for seamless identity synchronization.
 Always set policies to Report-only mode first to monitor their impact before enforcing them. Analyze sign-in logs and Conditional Access insights to prevent disruptions.
  
-o	BAS001-Block-AllApps-AllUsers-UnsupportedPlatform
-(Block access for unknown or unsupported device platform)
+o	BAS001-Block-AllApps-AllUsers-UnsupportedPlatform  
+(Block access for unknown or unsupported device platform)  
 Users are blocked from accessing company resources when the device type is unknown or unsupported.
 The device platform condition is based on user agent strings. Conditional Access policies using it should be used with another policy, like one requiring device compliance or app protection policies.
 o	BAS002-Block-O365Apps-AllUsers-ElevatedInsiderRisk
