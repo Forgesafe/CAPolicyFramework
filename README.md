@@ -25,7 +25,7 @@ To facilitate the rapid deployment of this Conditional Access framework, a Power
 ## The Conditional Access funnel model
  
 
- 
+![Picture3](/pics/Picture3.png) 
 
  
 ## Baseline policies
