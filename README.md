@@ -28,13 +28,18 @@ To facilitate the rapid deployment of this Conditional Access framework, a Power
 Exclude break-glass and directory sync accounts from all Conditional Access policies to prevent accidental lockouts. Break-glass accounts ensure admin access in emergencies, while directory sync accounts must remain unaffected for seamless identity synchronization.
 Always set policies to Report-only mode first to monitor their impact before enforcing them. Analyze sign-in logs and Conditional Access insights to prevent disruptions.
  
-o	BAS001-Block-AllApps-AllUsers-UnsupportedPlatform  
+**o	BAS001-Block-AllApps-AllUsers-UnsupportedPlatform**  
 (Block access for unknown or unsupported device platform)  
+
 Users are blocked from accessing company resources when the device type is unknown or unsupported.
+
 The device platform condition is based on user agent strings. Conditional Access policies using it should be used with another policy, like one requiring device compliance or app protection policies.
-o	BAS002-Block-O365Apps-AllUsers-ElevatedInsiderRisk
-(Block access to Office365 apps for users with insider risk)
+
+**o	BAS002-Block-O365Apps-AllUsers-ElevatedInsiderRisk**  
+(Block access to Office365 apps for users with insider risk)  
+
 Most users have a normal behavior that can be tracked. When they fall outside of this norm it could be risky to allow them to sign in. Organizations might want to block that user or ask them to review a specific terms of use policy. Microsoft Purview can provide an insider risk signal to Conditional Access to refine access control decisions. Insider risk management is part of Microsoft Purview. You must enable it before you can use the signal in Conditional Access.
+
 o	BAS003-Block-AllApps-Guests-AdminPortals
 (Block guest user access to admin portals)
 Blocks GuestsOrExternalUsers from accessing the 'MicrosoftAdminPortals' resources.
