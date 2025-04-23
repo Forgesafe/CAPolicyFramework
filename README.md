@@ -11,6 +11,8 @@ Microsoft Switzerland GmbH
 Careful planning of your Conditional Access deployment is important to implementing your organization's access strategy for applications and resources. In today's mobile-first, cloud-first environment, users access your organization's resources from various locations, devices, and applications. Consequently, focusing solely on who can access a resource is insufficient. Considerations must also include the user’s location, the device being used, the specific resource in question, and other relevant factors.
 
 Microsoft Entra Conditional Access (CA) utilizes signals such as user identity, device, and location to make automated decisions and enforce access policies tailored to your organization. These CA policies can apply access controls like multifactor authentication (MFA). By utilizing CA policies, organizations can prompt users for MFA when necessary, thereby enhancing security while ensuring a seamless user experience.
+
+![Tux, the Linux mascot](/pics/picture1.png)
  
 This document introduces a base Conditional Access framework, which builds on templates available in Entra ID but adds additional policies to secure administrative work with highly privileged Entra ID roles and to safeguard access to sensitive data. The framework is thought to be a starting point for an implementation which covers all users. Customers most certainly will add more policies to meet specific needs, and not all policies in this framework will be enabled in all environments from the start.
 
