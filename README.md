@@ -23,7 +23,8 @@ The framework leverages the capabilities of Microsoft Entra Conditional Access, 
 To facilitate the rapid deployment of this Conditional Access framework, a PowerShell script is available. This script streamlines the process, allowing for swift implementation without the need for in-depth manual configuration. It ensures that your access policies are applied efficiently and effectively, enhancing the security of your organization's resources.
  
 ## The Conditional Access funnel model
- 
+
+![Picture2](/pics/Picture2.png) 
 
 ![Picture3](/pics/Picture3.png) 
 
@@ -31,6 +32,8 @@ To facilitate the rapid deployment of this Conditional Access framework, a Power
 ## Baseline policies
 Exclude break-glass and directory sync accounts from all Conditional Access policies to prevent accidental lockouts. Break-glass accounts ensure admin access in emergencies, while directory sync accounts must remain unaffected for seamless identity synchronization.
 Always set policies to Report-only mode first to monitor their impact before enforcing them. Analyze sign-in logs and Conditional Access insights to prevent disruptions.
+
+![Picture4](/pics/Picture4.png) 
  
 **o	BAS001-Block-AllApps-AllUsers-UnsupportedPlatform**  
 (Block access for unknown or unsupported device platform)  
