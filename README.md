@@ -47,63 +47,96 @@ The device platform condition is based on user agent strings. Conditional Access
 
 Most users have a normal behavior that can be tracked. When they fall outside of this norm it could be risky to allow them to sign in. Organizations might want to block that user or ask them to review a specific terms of use policy. Microsoft Purview can provide an insider risk signal to Conditional Access to refine access control decisions. Insider risk management is part of Microsoft Purview. You must enable it before you can use the signal in Conditional Access.
 
-o	BAS003-Block-AllApps-Guests-AdminPortals
+**o	BAS003-Block-AllApps-Guests-AdminPortals**
 (Block guest user access to admin portals)
+
 Blocks GuestsOrExternalUsers from accessing the 'MicrosoftAdminPortals' resources.
-o	BAS004-Block-AllApps-AllUsers-LegacyAuth
+
+**o	BAS004-Block-AllApps-AllUsers-LegacyAuth**
 (Block legacy authentication)
+
 Microsoft recommends that organizations block authentication requests using legacy protocols that don't support multifactor authentication. Based on Microsoft's analysis more than 97 percent of credential stuffing attacks use legacy authentication and more than 99 percent of password spray attacks use legacy authentication protocols. These attacks would stop with basic authentication disabled or blocked.
-o	BAS005-Allow-AllApps-AllUsers-NoPersistentBrowser
+
+**o	BAS005-Allow-AllApps-AllUsers-NoPersistentBrowser**
 (No persistent browser session)
+
 Protect user access on unmanaged devices by preventing browser sessions from remaining signed in after the browser is closed and setting a sign-in frequency to 1 hour.
-o	BAS006-Allow-AllApps-AllUsers-RequireApprovedClientApps
+
+**o	BAS006-Allow-AllApps-AllUsers-RequireApprovedClientApps**
 (Require approved client apps or app protection policies)
+
 People regularly use their mobile devices for both personal and work tasks. While making sure staff can be productive, organizations also want to prevent data loss from applications on devices they may not manage fully. With Conditional Access, organizations can restrict access to approved (modern authentication capable) client apps with Intune app protection policies. For older client apps that may not support app protection policies, administrators can restrict access to approved client apps.
-o	BAS007-Block-AllApps-Admins-RequireCompliantDevice
+
+**o	BAS007-Block-AllApps-Admins-RequireCompliantDevice**
 (Require compliant device for administrators)
+
 Microsoft Intune and Microsoft Entra work together to secure your organization through device compliance policies and Conditional Access. Device compliance policies are a way to ensure user devices meet minimum configuration requirements. The requirements can be enforced when users access services protected with Conditional Access policies.
-o	BAS008-Allow-AllApps-AllUsers-RequireMFA
+
+**o	BAS008-Allow-AllApps-AllUsers-RequireMFA**
 (Require multifactor authentication for all users)
+
 Microsoft provides multiple templates in Entra ID to configure multifactor authentication (MFA).
+
 o	Require multifactor authentication for admins
 o	Require multifactor authentication for Azure Management
 o	Require multifactor authentication for guest access
 o	Require multifactor authentication for all users
+
 Implementing multifactor authentication (MFA) for all users, rather than for only a subset, is highly advisable as it substantially enhances organizational security by incorporating an additional layer of protection against unauthorized access. MFA necessitates that users provide multiple forms of verification prior to accessing sensitive information, thereby mitigating the risk of account compromise due to stolen passwords or other credentials.
-o	BAS009-Allow-AllApps-AllUsers-MFAforRiskySignIns
+
+**o	BAS009-Allow-AllApps-AllUsers-MFAforRiskySignIns**
 (Require multifactor authentication for risky sign-ins)
+
 Requiring multifactor authentication for risky sign-ins serves as an effective measure to ensure the authenticity of user identity during sessions that deviate from established behavioral norms.
+
 A sign-in risk represents the probability that a given authentication request isn't the identity owner. Organizations with Microsoft Entra ID P2 licenses can create Conditional Access policies incorporating Microsoft Entra ID Protection sign-in risk detections.
 The Sign-in risk-based policy protects users from registering MFA in risky sessions. If users aren't registered for MFA, their risky sign-ins are blocked, and they see an AADSTS53004 error.
-o	BAS010-Allow-AllApps-AllUsers-PasswordChangeForHighRiskUsers
+
+**o	BAS010-Allow-AllApps-AllUsers-PasswordChangeForHighRiskUsers**
 (Require password change for high-risk users)
+
 Mandating password changes for high-risk accounts is a precautionary measure. This approach helps address the potential compromise of credentials, which might be indicated by breaches or other malicious activities. By requiring such changes, organizations can mitigate the risk of unauthorized access to sensitive systems and data, strengthening their overall security posture.
-Microsoft Entra ID Protection user risk detections
-o	BAS011-Allow-AllApps-Admins-PhisingResistentMFA
+
+**o	BAS011-Allow-AllApps-Admins-PhisingResistentMFA**
 (Require phishing-resistant multifactor authentication for administrators)
+
 Implementing phishing-resistant MFA significantly reduces the likelihood of unauthorized access compared to traditional MFA. Unlike normal MFA, which relies on methods such as SMS codes or basic authentication apps, phishing-resistant MFA employs stronger mechanisms such as hardware-based security keys, biometrics, or certificate-based authentication. These methods are inherently resistant to common phishing techniques and ensure that attackers cannot bypass authentication even if credentials are compromised.
+
+![Picture5](/pics/Picture5.png) 
  
-o	BAS012-Allow-AllApps-AllUsers-SecureSecurityInfoRegistration
+**o	BAS012-Allow-AllApps-AllUsers-SecureSecurityInfoRegistration**
 (Securing security info registration)
+
 Securing security info registration involves controlling how and when users register for multi-factor authentication (MFA) and self-service password reset (SSPR) within Microsoft Entra ID. This policy safeguardes the registration process, treating it as any other application within Conditional Access policies. Organizations with combined registration enabled can leverage this feature to ensure that the registration process remains protected from unauthorized access or misuse.
+
 This approach allows administrators to enforce strict security measures during registration, such as requiring users to use secure authenticator apps or enabling passwordless phone sign-in. By securing this entry point, organizations reduce the risk of malicious actors exploiting the registration process as a vulnerability to bypass security protocols.
+
 For this policy, organizations must have combined registration activated for Multi-Factor Authentication (MFA) and Self-Service Password Reset (SSPR).
-o	BAS013-Allow-O365Apps-AllUsers-ApplicationEnforcedRestrictions
+
+**o	BAS013-Allow-O365Apps-AllUsers-ApplicationEnforcedRestrictions**
 (Use application enforced restrictions for O365 apps)
+
 This policy applies to unmanaged and managed non-compliant devices.
+
 Prior to setting up this Conditional Access policy, pre-requisite changes are required in SharePoint Online and Exchange Online:
+
 o	Block or limit access to a specific SharePoint site or OneDrive
 o	Limit access to email attachments in Outlook on the web and the new Outlook for Windows
 o	Enforce idle session timeout on unmanaged devices
+
 Application enforced restrictions for O365 apps allow organizations to implement policies that enhance security and control over their data and resources. These policies can block or limit access to specific SharePoint sites or OneDrive, restrict access to email attachments in Outlook on the web and the new Outlook for Windows, and enforce idle session timeouts on unmanaged devices. By leveraging these application enforced restrictions, organizations can tailor their access controls to meet specific security needs and ensure that sensitive information remains protected, mitigating risks associated with unauthorized access and data breaches.
-o	BAS014-Block-AllApps-AllUsers-RequireCompliantDevice
+
+**o	BAS014-Block-AllApps-AllUsers-RequireCompliantDevice**
 (Require compliant devices for all users)
+
 This policy, which mandates the use of compliant devices for all users, ensures that only devices meeting the organization's security standards can access applications and data. By enforcing compliance, the policy mitigates risks associated with unauthorized access and data breaches, thereby protecting sensitive information.
+
 The reasoning behind this policy is rooted in creating a secure digital environment. Requiring compliant devices eliminates vulnerabilities posed by unmanaged and potentially compromised devices, as these may not adhere to the organization's security protocols.
 By default, each policy created from templates in Entra ID is created in report-only mode. We recommended organizations test and monitor usage, to ensure the intended result, before turning on each policy.
  
-Data sensitivity-based Access Control
+## Data sensitivity-based Access Control
  
+![Picture6](/pics/Picture6.png) 
 
 To access Confidential and Highly Confidential applications, we recommend the following policies:
 o	DLP001-Block-AllApps-AllUsers-RequireCompliantSecureDeviceforCHCData
