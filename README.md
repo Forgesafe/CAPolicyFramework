@@ -147,19 +147,27 @@ This policy ensures secure access to confidential and highly confidential data b
 
 Prerequisites for implementing this policy include the availability of secure workstations specifically configured to limit the number and type of applications installed. These workstations must be tailored to handle sensitive data exclusively, excluding potentially risky components such as email clients. Additionally, organizations must ensure the proper configuration and maintenance of these workstations to guarantee their effectiveness in protecting critical resources.  
 
-o	DLP002-Allow-AllApps-AllUsers-PhisingResistantMFAforCHCData
-(Require phising-resistent MFA for confidential and highly confidential data)
-This policy mandates the use of phishing-resistant multi-factor authentication (MFA) for accessing confidential and highly confidential data. It ensures that users provide multiple secure forms of verification, such as hardware tokens, which are challenging for attackers to compromise.
-The reasoning behind this approach lies in minimizing the risks associated with phishing attacks. By requiring advanced authentication mechanisms, the policy significantly reduces the likelihood of unauthorized access, thereby protecting sensitive information from potential threats, including financial loss, reputational damage, and legal consequences.
-Prerequisites for implementing this policy include the availability of hardware tokens or similar secure verification tools.
-o	DLP003-Block-AllApps-Guests-BlockAccessToCHCData
-(Block access to highly confidential apps for non-employees)
-By default, this policy blocks GuestsOrExternalUsers from accessing confidential or highly confidential data. The policy can be modified to also include groups of users which have an internal account in the organization but are considered to be externals, such as contractors with a temporary hire.
-o	DLP004-Block-AllApps-AllUsers-AllowSpecificCountriesOnlyForCHCData
-(Allow access to CHC data only from specific countries)
-This policy is based on a named location 'Countries allowed for CHC data access' which is created by the PowerShell script and includes US (United States) and CH (Switzerland) by default. To change the countries allowed to access confidential or highly confidential data, the named location object must be edited.
+**o	DLP002-Allow-AllApps-AllUsers-PhisingResistantMFAforCHCData**  
+(Require phising-resistent MFA for confidential and highly confidential data)  
+
+This policy mandates the use of phishing-resistant multi-factor authentication (MFA) for accessing confidential and highly confidential data. It ensures that users provide multiple secure forms of verification, such as hardware tokens, which are challenging for attackers to compromise.  
+
+The reasoning behind this approach lies in minimizing the risks associated with phishing attacks. By requiring advanced authentication mechanisms, the policy significantly reduces the likelihood of unauthorized access, thereby protecting sensitive information from potential threats, including financial loss, reputational damage, and legal consequences.  
+
+Prerequisites for implementing this policy include the availability of hardware tokens or similar secure verification tools.  
+
+**o	DLP003-Block-AllApps-Guests-BlockAccessToCHCData**  
+(Block access to highly confidential apps for non-employees)  
+
+By default, this policy blocks GuestsOrExternalUsers from accessing confidential or highly confidential data. The policy can be modified to also include groups of users which have an internal account in the organization but are considered to be externals, such as contractors with a temporary hire.  
+
+**o	DLP004-Block-AllApps-AllUsers-AllowSpecificCountriesOnlyForCHCData**  
+(Allow access to CHC data only from specific countries)  
+
+This policy is based on a named location 'Countries allowed for CHC data access' which is created by the PowerShell script and includes US (United States) and CH (Switzerland) by default. To change the countries allowed to access confidential or highly confidential data, the named location object must be edited.  
+
 These policies necessitate the use of custom security attributes to ensure implementation and control. The attribute set is named DataSensitivity. It contains a multi-value attribute Classification with the values Highly Confidential and Confidential. The attributes are assigned to registered apps which contain highly confidential or confidential information.
- 
+
  
 Persona-based Access Control
 Persona-based access control categorizes users by their job function, behavior, and risk level. Unlike traditional role-based access, which grants permissions based on predefined roles, persona-based access adapts to real-time conditions.
