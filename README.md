@@ -176,10 +176,11 @@ These policies necessitate the use of custom security attributes to ensure imple
 
 Persona-based access control categorizes users by their job function, behavior, and risk level. Unlike traditional role-based access, which grants permissions based on predefined roles, persona-based access adapts to real-time conditions.  
 
-Organizations define personas that reflect how users interact with systems. Corporate employees using company devices might have seamless access, while remote workers could face stricter authentication. Third-party contractors should only access specific resources for limited periods, and privileged users require additional security layers. Guest users need minimal, temporary access.
+Organizations define personas that reflect how users interact with systems. Corporate employees using company devices might have seamless access, while remote workers could face stricter authentication. Third-party contractors should only access specific resources for limited periods, and privileged users require additional security layers. Guest users need minimal, temporary access.  
+
 Once personas are established, access conditions must align with security risks. A corporate employee logging in from an office device may not need multi-factor authentication (MFA), while a remote worker using an unmanaged laptop might. Privileged users should undergo real-time risk analysis, and contractors' access should be tightly controlled with time-based restrictions.
  
-Defined Personas
+### Defined Personas
 1.	Corporate Employee – Part- or Full-time employees using company-managed devices to access corporate resources. These users may work from the office, from home, or other remote locations. Zero Trust measures should include continuous identity verification, device compliance checks, and behavioral monitoring. Even when accessing from within the corporate network, employees should undergo periodic authentication challenges. Least privilege principles should be enforced, ensuring employees only access what is necessary for their role.
 Conditional Access policies for corporate employees are covered by the baseline policies and the data sensitivity policies already.
 2.	External Contractor – Employees of partner organizations or vendors who require access to shared systems and have an internal user account. External contractors may work remotely or from the organization's premises and use either company-managed devices or access through company-managed VDI. Access should be logged and reviewed frequently. Contractors accessing from unmanaged devices should be required to use secure VDI environments rather than direct access to internal systems.
