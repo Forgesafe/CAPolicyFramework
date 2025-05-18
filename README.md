@@ -169,8 +169,13 @@ This policy is based on a named location 'Countries allowed for CHC data access'
 These policies necessitate the use of custom security attributes to ensure implementation and control. The attribute set is named DataSensitivity. It contains a multi-value attribute Classification with the values Highly Confidential and Confidential. The attributes are assigned to registered apps which contain highly confidential or confidential information.
 
  
-Persona-based Access Control
-Persona-based access control categorizes users by their job function, behavior, and risk level. Unlike traditional role-based access, which grants permissions based on predefined roles, persona-based access adapts to real-time conditions.
+## Persona-based Access Control  
+
+![Picture7](/pics/Picture7.png) 
+
+
+Persona-based access control categorizes users by their job function, behavior, and risk level. Unlike traditional role-based access, which grants permissions based on predefined roles, persona-based access adapts to real-time conditions.  
+
 Organizations define personas that reflect how users interact with systems. Corporate employees using company devices might have seamless access, while remote workers could face stricter authentication. Third-party contractors should only access specific resources for limited periods, and privileged users require additional security layers. Guest users need minimal, temporary access.
 Once personas are established, access conditions must align with security risks. A corporate employee logging in from an office device may not need multi-factor authentication (MFA), while a remote worker using an unmanaged laptop might. Privileged users should undergo real-time risk analysis, and contractors' access should be tightly controlled with time-based restrictions.
  
