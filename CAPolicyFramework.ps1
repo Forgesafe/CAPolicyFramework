@@ -934,6 +934,7 @@ if (-not (Get-MgIdentityConditionalAccessPolicy | Where-Object { $_.DisplayName 
 $conditions = @{
     Applications = @{
         includeApplications = 'All'
+        excludeApplications = ('0af06dc6-e4b5-4f28-818e-e78e62d137a5','9cdead84-a844-4324-93f2-b2e6bb768d07','a4a365df-50f1-4397-bc59-1a1564b8bb9c','270efc09-cd0d-444b-a71f-39af4910ec45')
     };
     Users = @{
         excludeUsers = $BreakGlass1Id,$BreakGlass2Id
