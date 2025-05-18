@@ -139,10 +139,14 @@ By default, each policy created from templates in Entra ID is created in report-
 ![Picture6](/pics/Picture6.png) 
 
 To access Confidential and Highly Confidential applications, we recommend the following policies:  
+
 **o	DLP001-Block-AllApps-AllUsers-RequireCompliantSecureDeviceforCHCData**  
 (Require compliant and secure access workstation for confidential and highly confidential data)  
+
 This policy ensures secure access to confidential and highly confidential data by requiring compliant and secure workstations. The reasoning behind this approach lies in minimizing the risk of unauthorized access and safeguarding sensitive information within controlled environments. By mandating workstations that adhere to strict security protocols, it reduces vulnerabilities posed by devices that may lack adequate protections or contain unauthorized software.  
-Prerequisites for implementing this policy include the availability of secure workstations specifically configured to limit the number and type of applications installed. These workstations must be tailored to handle sensitive data exclusively, excluding potentially risky components such as email clients. Additionally, organizations must ensure the proper configuration and maintenance of these workstations to guarantee their effectiveness in protecting critical resources.
+
+Prerequisites for implementing this policy include the availability of secure workstations specifically configured to limit the number and type of applications installed. These workstations must be tailored to handle sensitive data exclusively, excluding potentially risky components such as email clients. Additionally, organizations must ensure the proper configuration and maintenance of these workstations to guarantee their effectiveness in protecting critical resources.  
+
 o	DLP002-Allow-AllApps-AllUsers-PhisingResistantMFAforCHCData
 (Require phising-resistent MFA for confidential and highly confidential data)
 This policy mandates the use of phishing-resistant multi-factor authentication (MFA) for accessing confidential and highly confidential data. It ensures that users provide multiple secure forms of verification, such as hardware tokens, which are challenging for attackers to compromise.
