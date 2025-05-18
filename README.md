@@ -168,11 +168,11 @@ This policy is based on a named location 'Countries allowed for CHC data access'
 
 These policies necessitate the use of custom security attributes to ensure implementation and control. The attribute set is named DataSensitivity. It contains a multi-value attribute Classification with the values Highly Confidential and Confidential. The attributes are assigned to registered apps which contain highly confidential or confidential information.
 
+![Picture7](/pics/Picture7.png) 
  
 ## Persona-based Access Control  
 
-![Picture7](/pics/Picture7.png) 
-
+![Picture8](/pics/Picture8.png) 
 
 Persona-based access control categorizes users by their job function, behavior, and risk level. Unlike traditional role-based access, which grants permissions based on predefined roles, persona-based access adapts to real-time conditions.  
 
