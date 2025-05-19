@@ -181,53 +181,72 @@ Organizations define personas that reflect how users interact with systems. Corp
 Once personas are established, access conditions must align with security risks. A corporate employee logging in from an office device may not need multi-factor authentication (MFA), while a remote worker using an unmanaged laptop might. Privileged users should undergo real-time risk analysis, and contractors' access should be tightly controlled with time-based restrictions.
  
 ### Defined Personas
-1.	Corporate Employee – Part- or Full-time employees using company-managed devices to access corporate resources. These users may work from the office, from home, or other remote locations. Zero Trust measures should include continuous identity verification, device compliance checks, and behavioral monitoring. Even when accessing from within the corporate network, employees should undergo periodic authentication challenges. Least privilege principles should be enforced, ensuring employees only access what is necessary for their role.
-Conditional Access policies for corporate employees are covered by the baseline policies and the data sensitivity policies already.
-2.	External Contractor – Employees of partner organizations or vendors who require access to shared systems and have an internal user account. External contractors may work remotely or from the organization's premises and use either company-managed devices or access through company-managed VDI. Access should be logged and reviewed frequently. Contractors accessing from unmanaged devices should be required to use secure VDI environments rather than direct access to internal systems.
-3.	Privileged User – IT administrators, executives, and other high-level personnel with access to critical systems, infrastructure, or sensitive company data. These users pose the highest risk if compromised. Zero Trust measures should include just-in-time (JIT) access, phising-resistent MFA, continuous monitoring, and real-time risk scoring. Privileged actions, such as modifying security settings or accessing sensitive data, should require additional verification steps. All privileged user activity should be logged and reviewed to prevent insider threats or credential misuse. Privileged Access Workstations are mandatory.
+1.	**Corporate Employee** – Part- or Full-time employees using company-managed devices to access corporate resources. These users may work from the office, from home, or other remote locations. Zero Trust measures should include continuous identity verification, device compliance checks, and behavioral monitoring. Even when accessing from within the corporate network, employees should undergo periodic authentication challenges. Least privilege principles should be enforced, ensuring employees only access what is necessary for their role.
+   
+Conditional Access policies for corporate employees are covered by the baseline policies and the data sensitivity policies already.  
+
+2.	**External Contractor** – Employees of partner organizations or vendors who require access to shared systems and have an internal user account. External contractors may work remotely or from the organization's premises and use either company-managed devices or access through company-managed VDI. Access should be logged and reviewed frequently. Contractors accessing from unmanaged devices should be required to use secure VDI environments rather than direct access to internal systems.
+   
+3.	**Privileged User** – IT administrators, executives, and other high-level personnel with access to critical systems, infrastructure, or sensitive company data. These users pose the highest risk if compromised. Zero Trust measures should include just-in-time (JIT) access, phising-resistent MFA, continuous monitoring, and real-time risk scoring. Privileged actions, such as modifying security settings or accessing sensitive data, should require additional verification steps. All privileged user activity should be logged and reviewed to prevent insider threats or credential misuse. Privileged Access Workstations are mandatory.
 The following Entra ID roles are considered to be privileged:
  
-Also add the Exchange Administrator role in Entra ID although it's recommended to avoid this role for Exchange administration but using the service-specific roles and Exchange RBAC.
-4.	Guest User – Users which don't have an internal account but authenticate against an external identity provider, typically in B2B scenarios. They usually operate from unmanaged devices. These users require highly restricted, time-limited access as they use mostly unmanaged devices. Zero Trust should enforce strict identity verification, sandboxed access to prevent interaction with critical systems, and automatic expiration of guest accounts. Guest users should never have persistent access and should be required to reauthenticate frequently.
-5.	Workload Identities – A workload identity is an identity you assign to a software workload (such as an application, service, script, or container) to authenticate and access other services and resources. The terminology is inconsistent across the industry, but generally a workload identity is something you need for your software entity to authenticate with some system. For example, in order for GitHub Actions to access Azure subscriptions the action needs a workload identity which has access to those subscriptions. A workload identity could also be an AWS service role attached to an EC2 instance with read-only access to an Amazon S3 bucket.
+Also add the Exchange Administrator role in Entra ID although it's recommended to avoid this role for Exchange administration but using the service-specific roles and Exchange RBAC.  
+
+4.	**Guest User** – Users which don't have an internal account but authenticate against an external identity provider, typically in B2B scenarios. They usually operate from unmanaged devices. These users require highly restricted, time-limited access as they use mostly unmanaged devices. Zero Trust should enforce strict identity verification, sandboxed access to prevent interaction with critical systems, and automatic expiration of guest accounts. Guest users should never have persistent access and should be required to reauthenticate frequently.
+   
+5.	**Workload Identities** – A workload identity is an identity you assign to a software workload (such as an application, service, script, or container) to authenticate and access other services and resources. The terminology is inconsistent across the industry, but generally a workload identity is something you need for your software entity to authenticate with some system. For example, in order for GitHub Actions to access Azure subscriptions the action needs a workload identity which has access to those subscriptions. A workload identity could also be an AWS service role attached to an EC2 instance with read-only access to an Amazon S3 bucket.
+     
 In Microsoft Entra, workload identities are applications, service principals, and managed identities.
-Workload identities - Microsoft Entra Workload ID | Microsoft Learn
-o	PER001-Block-AllApps-Admins-RequireSecureCompliantDevice
-(Require compliant and secure access workstation for privileged Entra ID roles)
-This policy mandates that privileged Entra ID roles must utilize compliant and secure access workstations, commonly referred to as Privileged Access Workstations (PAWs). The purpose of this requirement is to enhance security measures for individuals holding roles with elevated permissions, reducing the risk of unauthorized access, credential compromise, or insider threats. By enforcing the use of PAWs, the policy ensures that privileged activities are conducted in a controlled and secure environment, isolated from general-purpose devices that may be more susceptible to vulnerabilities.
-The reasoning behind this policy lies in the critical nature of privileged accounts within any organization. These accounts often have access to sensitive systems, infrastructure, and data, making them attractive targets for cyberattacks. Implementing PAWs mitgates risks by providing a dedicated, hardened workstation designed specifically for high-security operations, thereby minimizing attack vectors and ensuring adherence to Zero Trust principles.
-Prerequisites for this policy include the physical availability of Privileged Access Workstations to users assigned privileged Entra ID roles. These users must possess and log into the PAWs before accessing Azure portals or elevating their identity through Privileged Identity Management (PIM). Without a compliant PAW, users will be unable to fulfill the requirements of this policy, necessitating a break glass scenario if access is urgently required. Additionally, the enforcement of this policy must align with organizational processes for provisioning PAWs and training users to utilize them effectively.
-o	PER002-Block-AllApps-Externals-RequireCompliantSecureVDI
-(Require compliant and secure VDI for external users)
-This policy ensures that external users accessing corporate services must do so through managed Virtual Desktop Infrastructure (VDI) session hosts if they are using unmanaged devices. By enforcing this requirement, the policy aims to safeguard corporate data and resources by providing an additional layer of security through controlled virtual environments. It can be applied to Guest and External Users or specific security groups, depending on organizational needs.
-The reasoning for implementing this policy lies in mitigating risks associated with unmanaged devices, which are often more vulnerable to security threats. By requiring access via managed VDI session hosts, organizations can isolate corporate environments from potential vulnerabilities present on external users' devices, adhering to Zero Trust principles and ensuring secure access.
-Prerequisites for this policy include enabling the Microsoft.DesktopVirtualization resource provider on at least one Azure subscription. This is necessary for selecting target resources such as Azure Virtual Desktop, Microsoft Remote Desktop, and Windows Cloud Login. Additionally, Microsoft Entra multifactor authentication must be enforced for Azure Virtual Desktop sessions via Conditional Access policies to maintain a robust security posture.
-Enforce Microsoft Entra multifactor authentication for Azure Virtual Desktop using Conditional Access - Azure | Microsoft Learn
-Security recommendations for Azure Virtual Desktop | Microsoft Learn
-o	PER003-Block-AllApps-Admins-AllowSpecificCountriesOnly
-(Allow privileged Entra ID roles only from specific countries)
-This policy restricts access to privileged Entra ID roles based on specific countries. The named location object titled 'Countries allowed for admin access' is created using a PowerShell script and includes the United States and Switzerland by default. Organizations can modify this named location object to include or exclude specific countries, ensuring that highly privileged users can only access administrative portals and services from designated locations.
-The reasoning behind this policy rests on enhancing security by limiting access to sensitive roles from approved geographical areas. Such restrictions reduce the risk of unauthorized access that might arise from compromised credentials or devices in non-approved regions.
-Prerequisites for implementing this policy include configuring the named location object through PowerShell to specify the allowed countries. Administrators must ensure that the object is correctly edited to reflect the organization's geographic security requirements.
-o	PER004-Block-AllApps-Admins-HighUserRisk
-(Block privileged users with high user risk)
-This policy blocks access for users who hold one or more of the 28 highly privileged Entra ID roles if they are identified as having a high user risk. Its purpose is to mitigate risks associated with compromised accounts that could lead to unauthorized access to sensitive resources and significant security breaches. Unlike the standard approach of requiring password changes for high-risk users, this policy emphasizes stringent access control measures for privileged accounts, ensuring a higher level of security.
+
+**o	PER001-Block-AllApps-Admins-RequireSecureCompliantDevice**  
+(Require compliant and secure access workstation for privileged Entra ID roles)  
+
+This policy mandates that privileged Entra ID roles must utilize compliant and secure access workstations, commonly referred to as Privileged Access Workstations (PAWs). The purpose of this requirement is to enhance security measures for individuals holding roles with elevated permissions, reducing the risk of unauthorized access, credential compromise, or insider threats. By enforcing the use of PAWs, the policy ensures that privileged activities are conducted in a controlled and secure environment, isolated from general-purpose devices that may be more susceptible to vulnerabilities.  
+
+The reasoning behind this policy lies in the critical nature of privileged accounts within any organization. These accounts often have access to sensitive systems, infrastructure, and data, making them attractive targets for cyberattacks. Implementing PAWs mitgates risks by providing a dedicated, hardened workstation designed specifically for high-security operations, thereby minimizing attack vectors and ensuring adherence to Zero Trust principles.  
+
+Prerequisites for this policy include the physical availability of Privileged Access Workstations to users assigned privileged Entra ID roles. These users must possess and log into the PAWs before accessing Azure portals or elevating their identity through Privileged Identity Management (PIM). Without a compliant PAW, users will be unable to fulfill the requirements of this policy, necessitating a break glass scenario if access is urgently required. Additionally, the enforcement of this policy must align with organizational processes for provisioning PAWs and training users to utilize them effectively.  
+
+**o	PER002-Block-AllApps-Externals-RequireCompliantSecureVDI**  
+(Require compliant and secure VDI for external users)  
+
+This policy ensures that external users accessing corporate services must do so through managed Virtual Desktop Infrastructure (VDI) session hosts if they are using unmanaged devices. By enforcing this requirement, the policy aims to safeguard corporate data and resources by providing an additional layer of security through controlled virtual environments. It can be applied to Guest and External Users or specific security groups, depending on organizational needs.  
+
+The reasoning for implementing this policy lies in mitigating risks associated with unmanaged devices, which are often more vulnerable to security threats. By requiring access via managed VDI session hosts, organizations can isolate corporate environments from potential vulnerabilities present on external users' devices, adhering to Zero Trust principles and ensuring secure access.  
+
+Prerequisites for this policy include enabling the Microsoft.DesktopVirtualization resource provider on at least one Azure subscription. This is necessary for selecting target resources such as Azure Virtual Desktop, Microsoft Remote Desktop, and Windows Cloud Login. Additionally, Microsoft Entra multifactor authentication must be enforced for Azure Virtual Desktop sessions via Conditional Access policies to maintain a robust security posture.  
+
+**o	PER003-Block-AllApps-Admins-AllowSpecificCountriesOnly**  
+(Allow privileged Entra ID roles only from specific countries)  
+
+This policy restricts access to privileged Entra ID roles based on specific countries. The named location object titled 'Countries allowed for admin access' is created using a PowerShell script and includes the United States and Switzerland by default. Organizations can modify this named location object to include or exclude specific countries, ensuring that highly privileged users can only access administrative portals and services from designated locations.  
+
+The reasoning behind this policy rests on enhancing security by limiting access to sensitive roles from approved geographical areas. Such restrictions reduce the risk of unauthorized access that might arise from compromised credentials or devices in non-approved regions.  
+
+Prerequisites for implementing this policy include configuring the named location object through PowerShell to specify the allowed countries. Administrators must ensure that the object is correctly edited to reflect the organization's geographic security requirements.  
+
+**o	PER004-Block-AllApps-Admins-HighUserRisk**  
+(Block privileged users with high user risk)  
+
+This policy blocks access for users who hold one or more of the 28 highly privileged Entra ID roles if they are identified as having a high user risk. Its purpose is to mitigate risks associated with compromised accounts that could lead to unauthorized access to sensitive resources and significant security breaches. Unlike the standard approach of requiring password changes for high-risk users, this policy emphasizes stringent access control measures for privileged accounts, ensuring a higher level of security.  
+
 The reasoning behind this policy is rooted in the critical nature of privileged roles within an organization. Compromise of these roles can result in severe consequences as they often have extensive access and control over organizational resources. By blocking access for these users when high risk is detected, the policy minimizes the potential impact of malicious activity stemming from compromised credentials.
  
+**o	PER005-Block-AllApps-Admins-HighSignInRisk**  
+(Block privileged users with high sign-in risk)  
 
-o	PER005-Block-AllApps-Admins-HighSignInRisk
-(Block privileged users with high sign-in risk)
-The policy blocks access for users who hold one or more of the 28 highly privileged Entra ID roles if they are identified as having a high sign-in risk. It is designed to mitigate the severe consequences that could arise if a highly privileged role is compromised, as these roles typically have extensive access and control within the organization. By blocking access outright, the policy ensures that the risk of unauthorized actions stemming from compromised credentials is significantly reduced.
-The reasoning behind this policy emphasizes the critical importance of privileged accounts and the potential impact of malicious activity. Simply applying multi-factor authentication again in such scenarios is deemed insufficient due to the elevated risks associated with these roles. Blocking access for users exhibiting high sign-in risk provides a robust safeguard against exploitation.
-o	PER006-Block-AllApps-Guests-DeviceFlowAuthenticationTransfer
-(Block device code flow and authentication transfer for guest users)
+The policy blocks access for users who hold one or more of the 28 highly privileged Entra ID roles if they are identified as having a high sign-in risk. It is designed to mitigate the severe consequences that could arise if a highly privileged role is compromised, as these roles typically have extensive access and control within the organization. By blocking access outright, the policy ensures that the risk of unauthorized actions stemming from compromised credentials is significantly reduced.  
+
+The reasoning behind this policy emphasizes the critical importance of privileged accounts and the potential impact of malicious activity. Simply applying multi-factor authentication again in such scenarios is deemed insufficient due to the elevated risks associated with these roles. Blocking access for users exhibiting high sign-in risk provides a robust safeguard against exploitation.  
+
+**o	PER006-Block-AllApps-Guests-DeviceFlowAuthenticationTransfer**  
+(Block device code flow and authentication transfer for guest users)  
+
 This policy restricts guest users from utilizing device code flow and authentication transfer methods within the organization's applications. Device code flow is a method where a user initiates authentication on one device and completes it on another, commonly used in scenarios where input capabilities are limited. Authentication transfer allows a user to authenticate in one application and then use that authentication token to access another application. By blocking these methods for guest users, the policy aims to enhance security and prevent unauthorized access through potentially vulnerable authentication pathways, ensuring that only appropriate authentication mechanisms are used for guest user access.
 
+![Picture9](/pics/Picture9.png)  
  
- 
+## Conditional Access Insights and Reporting  
+The Conditional Access insights and reporting workbook enables you to understand the impact of Conditional Access policies in your organization over time. During sign-in, one or more Conditional Access policies might apply, granting access if certain grant controls are satisfied or denying access otherwise. Because multiple Conditional Access policies might be evaluated during each sign-in, the insights and reporting workbook lets you examine the impact of an individual policy or a subset of all policies.  
 
- 
-Conditional Access Insights and Reporting
-The Conditional Access insights and reporting workbook enables you to understand the impact of Conditional Access policies in your organization over time. During sign-in, one or more Conditional Access policies might apply, granting access if certain grant controls are satisfied or denying access otherwise. Because multiple Conditional Access policies might be evaluated during each sign-in, the insights and reporting workbook lets you examine the impact of an individual policy or a subset of all policies.
-Conditional Access insights and reporting workbook - Microsoft Entra ID | Microsoft Learn
- 
+![Picture10](/pics/Picture10.png) 
