@@ -229,7 +229,7 @@ $params = @{
 }
 if (-not (get-MgIdentityConditionalAccessNamedLocation | Where-Object { $_.DisplayName -eq "Countries allowed for admin access" })) {
     Write-Host "Creating named location 'Countries allowed for admin access'..." -ForegroundColor Yellow
-    $AdminAllowedCountriesId = (New-MgIdentityConditionalAccessNamedLocation @params).id
+    $AdminAllowedCountriesId = (New-MgIdentityConditionalAccessNamedLocation -BodyParameter $params).id
 } else {
     Write-Host "Named location 'Countries allowed for admin access' exists already." -ForegroundColor Yellow
 }
@@ -245,7 +245,7 @@ $params = @{
 }
 if (-not (get-MgIdentityConditionalAccessNamedLocation | Where-Object { $_.DisplayName -eq "Countries allowed for CHC data access" })) {
     Write-Host "Creating named location 'Countries allowed for CHC data access'..." -ForegroundColor Yellow
-    $CHCllowedCountriesId = (New-MgIdentityConditionalAccessNamedLocation @params).id
+    $CHCllowedCountriesId = (New-MgIdentityConditionalAccessNamedLocation -BodyParameter $params).id
 } else {
     Write-Host "Named location 'Countries allowed for CHC data access' exists already." -ForegroundColor Yellow
 }
